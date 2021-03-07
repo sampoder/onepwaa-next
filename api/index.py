@@ -4,6 +4,7 @@ geolocator = Nominatim(user_agent="my-applicfdxbhation")
 import numpy as np
 from http.server import BaseHTTPRequestHandler
 from urllib import parse
+import json
 
 def geolocate(city=None, country=None):
     '''
@@ -47,10 +48,10 @@ class handler(BaseHTTPRequestHandler):
         self.send_header('Content-type','text/plain')
         self.end_headers()
         locations = []
-        for _ in range(5):
-          if fake.local_latlng('SG') is None:
-            locations.append(list(geolocate(country='SG')))
+        for _ in range(int(dic["number"])):
+          if fake.local_latlng(dic["country"]) is None:
+            locations.append(list(geolocate(country=dic["country"])))
           else:
-            locations.append(list(fake.local_latlng('SG')))
-        self.wfile.write(locations.encode())
+            locations.append(list(fake.local_latlng(dic["country"])))
+        self.wfile.write(json.dumps(locations).encode())
         return
