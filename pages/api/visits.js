@@ -1,6 +1,6 @@
 import visits from '../../lib/visits'
 import randomLocation from 'random-location'
-import names from '../lib/names.json'
+import names from '../../lib/names.json'
 const countries = require('../../lib/countries.json')
 const classifyPoint = require('robust-point-in-polygon')
 const getCountryISO3 = require('country-iso-2-to-3')
