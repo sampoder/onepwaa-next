@@ -10,12 +10,19 @@
     "start": "next start"
   },
   "dependencies": {
+    "@google-analytics/data": "^2.2.1",
     "@mdx-js/loader": "^1.6.22",
     "@next/mdx": "^10.0.7",
+    "country-iso-2-to-3": "^1.1.0",
+    "country-to-iso": "^1.1.0",
+    "geoip-country": "^4.0.58",
+    "lodash": "^4.17.21",
     "next": "^10.0.7",
+    "random-location": "^1.1.3",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-simple-maps": "^2.3.0",
+    "robust-point-in-polygon": "^1.0.3",
     "theme-ui": "^0.6.0-alpha.7",
     "theme-ui-preset-geist": "^0.0.2"
   }

@@ -31,7 +31,6 @@ const markers = [
 ]
 
 const MapChart = () => {
-  console.log(theme.colors)
   return (
     <ComposableMap projection="geoMercator" width={965}>
       <Geographies geography={geoUrl}>

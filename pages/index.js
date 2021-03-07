@@ -1,8 +1,9 @@
 import { Box, Button, Container, Heading, Text } from 'theme-ui'
 import MapChart from '../components/map'
 import theme from 'theme-ui-preset-geist'
+import colours from '../lib/colours'
 
-function App() {
+function App(props) {
   return (
     <Box>
       <Box sx={{ maxHeight: '100vh', overflowY: 'hidden' }}>
@@ -22,8 +23,15 @@ function App() {
         >
           <Heading as="h1" sx={{ fontWeight: '800', marginBottom: '12px' }}>
             Share{' '}
-            <Text sx={theme => theme.util.gxText('green', 'gold')}>
-              Australia's
+            <Text
+              sx={theme =>
+                theme.util.gxText(
+                  props.country.colours[0],
+                  props.country.colours[1],
+                )
+              }
+            >
+              {props.country.full}'s
             </Text>{' '}
             Pwaa-tastic Spirit with the World
           </Heading>
@@ -53,10 +61,31 @@ function App() {
 }
 
 export function getServerSideProps(context) {
-  var ip = context.req.headers['x-forwarded-for'] || context.req.connection.remoteAddress
-  console.log(ip)
+  const geoip = require('geoip-country')
+  const { countryToAlpha2 } = require('country-to-iso')
+  const { orderBy, filter } = require('lodash')
+  const sortedColours = colours.map(colour => ({
+    country: countryToAlpha2(colour['Country']),
+    full: colour['Country'],
+    colours: colour['Primary colours']
+      .replace('and', ',')
+      .replace(' ', '')
+      .split(','),
+  }))
+  const ip = context.req.headers['x-forwarded-for']
+    ? context.req.headers['x-forwarded-for']
+    : '5.53.103.255'
+  console.log(geoip.lookup(ip))
+  const country = filter(
+    sortedColours,
+    colour => colour.country === geoip.lookup(ip).country,
+  )
+  console.log(country)
+
+
+  
   return {
-    props: { data: 'hi' },
+    props: { country: country[0] },
   }
 }
 
