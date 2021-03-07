@@ -1,7 +1,6 @@
 from faker import Faker
 from geopy.geocoders import Nominatim
 geolocator = Nominatim(user_agent="my-applicfdxbhation")
-import numpy as np
 from http.server import BaseHTTPRequestHandler
 from urllib import parse
 import json
@@ -23,7 +22,7 @@ def geolocate(city=None, country=None):
         # Otherwise
         except:
             # Return missing value
-            return np.nan
+            return None
     # If the city doesn't exist
     else:
         # Try
@@ -35,7 +34,7 @@ def geolocate(city=None, country=None):
         # Otherwise
         except:
             # Return missing value
-            return np.nan
+            return None
 
 fake = Faker()
 Faker.seed(0)
