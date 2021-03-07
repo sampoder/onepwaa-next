@@ -53,5 +53,5 @@ class handler(BaseHTTPRequestHandler):
             locations.append(list(geolocate(country='SG')))
           else:
             locations.append(list(fake.local_latlng('SG')))
-        self.wfile.write(json.dumps(locations))
+        self.wfile.write(json.dumps(locations).encode())
         return
