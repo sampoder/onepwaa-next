@@ -3,14 +3,18 @@ import Head from 'next/head'
 
 import Meta from '../components/meta'
 import ColorSwitcher from '../components/color-switcher'
-import theme from '../lib/theme'
-import { ThemeProvider } from 'theme-ui'
+import { ThemeProvider, merge } from 'theme-ui'
+import theme from 'theme-ui-preset-geist'
+
+const brandTheme = merge(theme, {
+  initialColorModeName: 'dark',
+  useColorSchemeMediaQuery: false,
+})
 
 const App = ({ Component, pageProps }) => {
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={brandTheme}>
       <Meta />
-      <ColorSwitcher />
       <Component {...pageProps} />
     </ThemeProvider>
   )

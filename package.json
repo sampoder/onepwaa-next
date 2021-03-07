@@ -15,6 +15,8 @@
     "next": "^10.0.7",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "theme-ui": "^0.6.0-alpha.7"
+    "react-simple-maps": "^2.3.0",
+    "theme-ui": "^0.6.0-alpha.7",
+    "theme-ui-preset-geist": "^0.0.2"
   }
 }
