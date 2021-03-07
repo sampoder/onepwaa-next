@@ -42,7 +42,13 @@ function App(props) {
             </Text>{' '}
             Pwaa-tastic Spirit with the World
           </Heading>
-          <Button variant="primary">Send a Pwaa!</Button>
+          <Button variant="primary" sx={{ color: 'white' }}>
+            <img
+              src="https://cloud-akqarlyq9-hack-club-bot.vercel.app/01p_logo_white.png"
+              style={{ height: '17px', verticalAlign: 'text-bottom' }}
+            />{' '}
+            Send a Pwaa!
+          </Button>
           <Button
             variant="primary"
             onClick={() => {
