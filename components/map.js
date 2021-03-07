@@ -7,6 +7,13 @@ import {
   Marker,
 } from 'react-simple-maps'
 import theme from 'theme-ui-preset-geist'
+import base from '../lib/base'
+
+const map1 = base.map(x => ({
+  markerOffset: -30,
+  name: 'Base Marker',
+  coordinates: [x[1], x[0]],
+}))
 
 const geoUrl =
   'https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json'
@@ -45,7 +52,7 @@ const MapChart = () => {
           ))
         }
       </Geographies>
-      {markers.map(({ name, coordinates, markerOffset }) => (
+      {map1.map(({ name, coordinates, markerOffset }) => (
         <Marker key={name} coordinates={coordinates}>
           <circle cx="2" cy="2" r="2" fill={theme.colors.success} />
         </Marker>

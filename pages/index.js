@@ -3,8 +3,14 @@ import MapChart from '../components/map'
 import theme from 'theme-ui-preset-geist'
 import colours from '../lib/colours'
 import names from '../lib/names.json'
+import useSound from 'use-sound'
+import { useState } from 'react'
 
 function App(props) {
+  const [sound, setSound] = useState(false)
+  const [pop, { popStop }] = useSound(
+    'https://www.joshwcomeau.com/sounds/pop-up-off.mp3',
+  )
   return (
     <Box>
       <Box sx={{ maxHeight: '100vh', overflowY: 'hidden' }}>
@@ -36,20 +42,30 @@ function App(props) {
             </Text>{' '}
             Pwaa-tastic Spirit with the World
           </Heading>
+          <Button variant="primary">Send a Pwaa!</Button>
           <Button
             variant="primary"
-            as="a"
-            href="https://github.com/lachlanjc/next-theme-starter"
+            onClick={() => {
+              setSound(!sound)
+              if (!sound) {
+                pop()
+              }
+            }}
+            sx={{
+              minWidth: '10px',
+              marginLeft: '8px',
+              transition: 'transform 0.35s ease-in-out',
+              ':focus': {
+                transform: `rotate(${Math.random() > 0.5 ? '6' : '-6'}deg)`,
+              },
+              ':hover': {
+                transform: `rotate(${Math.random() > 0.5 ? '6' : '-6'}deg)`,
+              },
+            }}
           >
-            Send a Pwaa!!
-          </Button>
-          <Button
-            variant="primary"
-            as="a"
-            sx={{ minWidth: '10px', marginLeft: '8px' }}
-            href="https://github.com/lachlanjc/next-theme-starter"
-          >
-            🔊
+            <Text sx={{ transform: 'rotate(30deg)' }}>
+              {sound ? '🔊' : '🔇'}
+            </Text>
           </Button>
           <Box sx={{ fontWeight: '400', fontSize: '0.6em', marginTop: '12px' }}>
             Data points displayed on the map is a combination of Pwaas sent and
