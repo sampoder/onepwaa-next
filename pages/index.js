@@ -2,6 +2,7 @@ import { Box, Button, Container, Heading, Text } from 'theme-ui'
 import MapChart from '../components/map'
 import theme from 'theme-ui-preset-geist'
 import colours from '../lib/colours'
+import { countryToAlpha2 } from 'country-to-iso'
 
 function App(props) {
   return (
@@ -62,7 +63,6 @@ function App(props) {
 
 export function getServerSideProps(context) {
   const geoip = require('geoip-country')
-  const { countryToAlpha2 } = require('country-to-iso')
   const { orderBy, filter } = require('lodash')
   const sortedColours = colours.map(colour => ({
     country: countryToAlpha2(colour['Country']),

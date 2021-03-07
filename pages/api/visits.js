@@ -1,6 +1,6 @@
 import visits from '../../lib/visits'
 import randomLocation from 'random-location'
-const { countryToAlpha2 } = require('country-to-iso')
+import { countryToAlpha2 } from 'country-to-iso'
 const countries = require('../../lib/countries.json')
 const classifyPoint = require('robust-point-in-polygon')
 const getCountryISO3 = require('country-iso-2-to-3')
