@@ -1,6 +1,6 @@
 import visits from '../../lib/visits'
 import randomLocation from 'random-location'
-const { countryToAlpha2 } = require('country-to-iso')
+import names from '../lib/names.json'
 const countries = require('../../lib/countries.json')
 const classifyPoint = require('robust-point-in-polygon')
 const getCountryISO3 = require('country-iso-2-to-3')
@@ -44,7 +44,17 @@ function pointsInCountry(country, interval) {
 export const fetchVisits = async => {
   let points = []
   const sortedVisits = visits.map(visit => ({
-    country: getCountryISO3(countryToAlpha2(visit['Country'])),
+    country: getCountryISO3(
+      names[
+        visit['Country']
+          .replace(' ', '')
+          .normalize('NFD')
+          .replace('the', '')
+          .replace(/[\u0300-\u036f]/g, '')
+          .replace(/\W/g, '')
+          .toLocaleUpperCase()
+      ],
+    ),
     visits: visit['Users'] + visit['New Users'],
   }))
 

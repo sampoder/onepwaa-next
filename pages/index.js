@@ -2,6 +2,7 @@ import { Box, Button, Container, Heading, Text } from 'theme-ui'
 import MapChart from '../components/map'
 import theme from 'theme-ui-preset-geist'
 import colours from '../lib/colours'
+import names from '../lib/names.json'
 
 function App(props) {
   return (
@@ -62,16 +63,25 @@ function App(props) {
 
 export function getServerSideProps(context) {
   const geoip = require('geoip-country')
-  const { countryToAlpha2 } = require('country-to-iso')
   const { orderBy, filter } = require('lodash')
   const sortedColours = colours.map(colour => ({
-    country: countryToAlpha2(colour['Country']),
+    country:
+      names[
+        colour['Country']
+          .replace(' ', '')
+          .normalize('NFD')
+          .replace('the', '')
+          .replace(/[\u0300-\u036f]/g, '')
+          .replace(/\W/g, '')
+          .toLocaleUpperCase()
+      ],
     full: colour['Country'],
     colours: colour['Primary colours']
       .replace('and', ',')
       .replace(' ', '')
       .split(','),
   }))
+  console.log(sortedColours)
   const ip = context.req.headers['x-forwarded-for']
     ? context.req.headers['x-forwarded-for']
     : '5.53.103.255'
@@ -82,8 +92,6 @@ export function getServerSideProps(context) {
   )
   console.log(country)
 
-
-  
   return {
     props: { country: country[0] },
   }
