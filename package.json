@@ -24,7 +24,7 @@
     "react-dom": "^17.0.1",
     "react-simple-maps": "^2.3.0",
     "robust-point-in-polygon": "^1.0.3",
-    "theme-ui": "^0.6.0-alpha.7",
+    "theme-ui": "^0.6.0-canary.1544.5359f8a1e408a4dfeb74a9ae39688270286e534a.0",
     "theme-ui-preset-geist": "^0.0.2",
     "use-sound": "^2.0.1",
     "yarn": "^1.22.10"
