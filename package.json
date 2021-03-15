@@ -16,7 +16,7 @@
     "add": "^2.0.6",
     "country-iso-2-to-3": "^1.1.0",
     "country-to-iso": "^1.1.0",
-    "geoip-country": "^4.0.58",
+    "geoip-country": "^4.0.59",
     "lodash": "^4.17.21",
     "next": "^10.0.7",
     "random-location": "^1.1.3",
