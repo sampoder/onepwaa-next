@@ -21,7 +21,7 @@ const geoUrl =
 const MapChart = ({ pwaas }) => {
   const size = useWindowSize();
   return (
-    <ComposableMap projection="geoMercator" width={100} height={size.width > 1150 ? 45 : 50} style={{ width: '100%' }} projectionConfig={{
+    <ComposableMap projection="geoMercator" width={100} height={size.width > 1150 ? 45 : 55} style={{ width: '100%' }} projectionConfig={{
       rotate: [0, 0, 0],
       scale: 15,
       center:[20, 8]
