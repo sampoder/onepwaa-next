@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   ComposableMap,
   ZoomableGroup,
@@ -8,6 +8,8 @@ import {
 } from 'react-simple-maps'
 import theme from 'theme-ui-preset-geist'
 import base from '../lib/base'
+import { useChannel, useEvent } from '@harelpls/use-pusher'
+import { Animated } from 'react-animated-css'
 
 const map1 = base.map(x => ({
   markerOffset: -30,
@@ -24,20 +26,14 @@ const markers = [
     name: 'Buenos Aires',
     coordinates: [-58.3816, -34.6037],
   },
-  { markerOffset: 15, name: 'La Paz', coordinates: [-68.1193, -16.4897] },
-  { markerOffset: 15, name: 'Brasilia', coordinates: [-47.8825, -15.7942] },
-  { markerOffset: 15, name: 'Santiago', coordinates: [-70.6693, -33.4489] },
-  { markerOffset: 15, name: 'Bogota', coordinates: [-74.0721, 4.711] },
-  { markerOffset: 15, name: 'Quito', coordinates: [-78.4678, -0.1807] },
-  { markerOffset: -30, name: 'Georgetown', coordinates: [-58.1551, 6.8013] },
-  { markerOffset: -30, name: 'Asuncion', coordinates: [-57.5759, -25.2637] },
-  { markerOffset: 15, name: 'Paramaribo', coordinates: [-55.2038, 5.852] },
-  { markerOffset: 15, name: 'Montevideo', coordinates: [-56.1645, -34.9011] },
-  { markerOffset: 15, name: 'Caracas', coordinates: [-66.9036, 10.4806] },
-  { markerOffset: 15, name: 'Lima', coordinates: [-77.0428, -12.0464] },
 ]
 
 const MapChart = () => {
+  const [pwaas, setPwaas] = useState()
+  const channel = useChannel('pwaa')
+  useEvent(channel, 'incoming', async ({ long, lat }) => {
+    alert('Pwaa!')
+  })
   return (
     <ComposableMap projection="geoMercator" width={965}>
       <Geographies geography={geoUrl}>
@@ -53,8 +49,21 @@ const MapChart = () => {
         }
       </Geographies>
       {map1.map(({ name, coordinates, markerOffset }) => (
-        <Marker key={name} coordinates={coordinates}>
-          <circle cx="2" cy="2" r="2" fill={theme.colors.success} />
+        <Marker coordinates={coordinates} key={Math.random()}>
+          <circle cx="2" cy="2" r="2" fill={theme.colors.success}></circle>
+        </Marker>
+      ))}
+      {markers.map(({ name, coordinates, markerOffset }) => (
+        <Marker key={name} coordinates={coordinates} key={Math.random()}>
+          <circle cx="2" cy="2" r="30" fill={theme.colors.success}></circle>
+          <image
+            x="0%"
+            y="0%"
+            xlinkHref="https://cloud-akqarlyq9-hack-club-bot.vercel.app/01p_logo_white.png"
+            height="30"
+            width="30"
+          ></image>
+          
         </Marker>
       ))}
     </ComposableMap>

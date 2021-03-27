@@ -5,6 +5,15 @@ import Meta from '../components/meta'
 import ColorSwitcher from '../components/color-switcher'
 import { ThemeProvider, merge } from 'theme-ui'
 import theme from 'theme-ui-preset-geist'
+import { PusherProvider } from '@harelpls/use-pusher'
+
+const config = {
+  // required config props
+  clientKey: 'd83e73923e8acf7d6d52',
+  appId: '1167783',
+  cluster: 'ap1',
+  useTLS: true,
+}
 
 theme.util = {
   motion: '@media (prefers-reduced-motion: no-preference)',
@@ -41,8 +50,15 @@ const brandTheme = merge(theme, {
 const App = ({ Component, pageProps }) => {
   return (
     <ThemeProvider theme={brandTheme}>
-      <Meta />
-      <Component {...pageProps} />
+      <PusherProvider {...config}>
+        <Meta>
+          <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"
+          />
+        </Meta>
+        <Component {...pageProps} />
+      </PusherProvider>
     </ThemeProvider>
   )
 }

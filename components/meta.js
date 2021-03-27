@@ -55,11 +55,7 @@ const Meta = ({
       sizes="180x180"
       href={`${url}/apple-touch-icon.png`}
     />
-    <link
-      key="favicon"
-      rel="icon"
-      href={`/favicon.ico`}
-    />
+    <link key="favicon" rel="icon" href={`/favicon.ico`} />
     <link key="manifest" rel="manifest" href={`${url}/site.webmanifest`} />
     {children}
   </Head>
