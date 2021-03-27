@@ -81,13 +81,7 @@ export default function App(props) {
             sx={{
               minWidth: '10px',
               marginLeft: '8px',
-              transition: 'transform 0.35s ease-in-out',
-              ':focus': {
-                transform: `rotate(${Math.random() > 0.5 ? '6' : '-6'}deg)`,
-              },
-              ':hover': {
-                transform: `rotate(${Math.random() > 0.5 ? '6' : '-6'}deg)`,
-              },
+              transition: 'transform 0.35s ease-in-out'
             }}
           >
             <Text sx={{ transform: 'rotate(30deg)' }}>
