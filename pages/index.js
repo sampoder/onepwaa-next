@@ -15,7 +15,7 @@ function App(props) {
   const [pwaa, { pwaaStop }] = useSound(
     'https://cloud-3hdgzu1je-hack-club-bot.vercel.app/0sweet_sounds_of_an_alpaca.hlj.mp3',
   )
-  const [pwaas, setPwaas] = useState([])
+  const [pwaas, setPwaas] = useState(props.logs)
   const channel = useChannel('pwaa')
   useEvent(channel, 'incoming', async ({ lat, long }) => {
     if (sound) {
@@ -27,7 +27,7 @@ function App(props) {
   return (
     <Box>
       <Box sx={{ maxHeight: '100vh', overflowY: 'hidden' }}>
-        <MapChart pwaas={pwaas}/>
+        <MapChart pwaas={pwaas} />
         <Box
           sx={{
             position: 'absolute',
@@ -106,7 +106,7 @@ function App(props) {
   )
 }
 
-export function getServerSideProps(context) {
+export async function getServerSideProps(context) {
   const geoip = require('geoip-country')
   const { orderBy, filter } = require('lodash')
   const sortedColours = colours.map(colour => ({
@@ -136,8 +136,23 @@ export function getServerSideProps(context) {
   )
   console.log(country)
 
+  const AirtablePlus = require('airtable-plus')
+
+  const inst = new AirtablePlus({
+    baseID: process.env.base,
+    tableName: 'logs',
+    apiKey: process.env.airtable,
+  })
+
+  const logs = (await inst.read({})).map(({ id, fields }) => ({
+    name: Math.random(),
+    coordinates: [fields.lat, fields.long],
+  }))
+
+  console.log(logs)
+
   return {
-    props: { country: country[0] },
+    props: { country: country[0], logs },
   }
 }
 
