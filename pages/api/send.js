@@ -1,12 +1,12 @@
-const AirtablePlus = require('airtable-plus');
+const AirtablePlus = require('airtable-plus')
 
 export default async (req, res) => {
   const Pusher = require('pusher')
-  
+
   const inst = new AirtablePlus({
     baseID: process.env.base,
     tableName: 'logs',
-    apiKey: process.env.airtable
+    apiKey: process.env.airtable,
   })
 
   const pusher = new Pusher({
@@ -20,6 +20,11 @@ export default async (req, res) => {
   let result = await fetch(
     `https://onepwaa-next-sampoder.vercel.app/api/index?country=${req.query.country}&number=1`,
   ).then(res => res.json())
+
+  console.log({
+    long: result[0][0].toString(),
+    lat: result[0][1].toString(),
+  })
 
   await pusher.trigger('pwaa', 'incoming', {
     long: result[0][0].toString(),
