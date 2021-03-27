@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {
   ComposableMap,
   ZoomableGroup,
@@ -8,9 +8,8 @@ import {
 } from 'react-simple-maps'
 import theme from 'theme-ui-preset-geist'
 import base from '../lib/base'
-import { useChannel, useEvent } from '@harelpls/use-pusher'
 
-const map1 = base.map(x => ({
+const map = base.map(x => ({
   markerOffset: -30,
   name: 'Base Marker',
   coordinates: [x[1], x[0]],
@@ -18,14 +17,6 @@ const map1 = base.map(x => ({
 
 const geoUrl =
   'https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json'
-
-const markers = [
-  {
-    markerOffset: -30,
-    name: 'Buenos Aires',
-    coordinates: [-58.3816, -34.6037],
-  },
-]
 
 const MapChart = ({ pwaas }) => {
   return (
@@ -42,7 +33,7 @@ const MapChart = ({ pwaas }) => {
           ))
         }
       </Geographies>
-      {map1.map(({ name, coordinates, markerOffset }) => (
+      {map.map(({ name, coordinates, markerOffset }) => (
         <Marker coordinates={coordinates} key={Math.random()}>
           <circle cx="2" cy="2" r="2" fill={theme.colors.success}></circle>
         </Marker>
