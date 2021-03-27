@@ -31,7 +31,7 @@ export default async (req, res) => {
     lat: result[0][1].toString(),
   })
 
-  await inst.create({ long: result[0][0], lat: result[0][1] })
+  await inst.create({ long: result[0][0].toString(), lat: result[0][1].toString() })
 
   res.statusCode = 200
   res.send('Success')
