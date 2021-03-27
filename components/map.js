@@ -9,7 +9,6 @@ import {
 import theme from 'theme-ui-preset-geist'
 import base from '../lib/base'
 import { useChannel, useEvent } from '@harelpls/use-pusher'
-import { Animated } from 'react-animated-css'
 
 const map1 = base.map(x => ({
   markerOffset: -30,
@@ -28,12 +27,8 @@ const markers = [
   },
 ]
 
-const MapChart = () => {
-  const [pwaas, setPwaas] = useState()
-  const channel = useChannel('pwaa')
-  useEvent(channel, 'incoming', async ({ long, lat }) => {
-    alert('Pwaa!')
-  })
+const MapChart = ({pwaas}) => {
+  
   return (
     <ComposableMap projection="geoMercator" width={965}>
       <Geographies geography={geoUrl}>
@@ -53,15 +48,15 @@ const MapChart = () => {
           <circle cx="2" cy="2" r="2" fill={theme.colors.success}></circle>
         </Marker>
       ))}
-      {markers.map(({ name, coordinates, markerOffset }) => (
+      {pwaas.map(({ name, coordinates, markerOffset }) => (
         <Marker key={name} coordinates={coordinates} key={Math.random()}>
-          <circle cx="2" cy="2" r="30" fill={theme.colors.success}></circle>
+          <circle cx="6" cy="6.5" r="10" fill={theme.colors.success}></circle>
           <image
             x="0%"
             y="0%"
             xlinkHref="https://cloud-akqarlyq9-hack-club-bot.vercel.app/01p_logo_white.png"
-            height="30"
-            width="30"
+            height="14"
+            width="14"
           ></image>
           
         </Marker>

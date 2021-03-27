@@ -5,16 +5,29 @@ import colours from '../lib/colours'
 import names from '../lib/names.json'
 import useSound from 'use-sound'
 import { useState } from 'react'
+import { useChannel, useEvent } from '@harelpls/use-pusher'
 
 function App(props) {
   const [sound, setSound] = useState(false)
   const [pop, { popStop }] = useSound(
     'https://www.joshwcomeau.com/sounds/pop-up-off.mp3',
   )
+  const [pwaa, { pwaaStop }] = useSound(
+    'https://cloud-3hdgzu1je-hack-club-bot.vercel.app/0sweet_sounds_of_an_alpaca.hlj.mp3',
+  )
+  const [pwaas, setPwaas] = useState([])
+  const channel = useChannel('pwaa')
+  useEvent(channel, 'incoming', async ({ lat, long }) => {
+    if (sound) {
+      pwaa()
+    }
+    setPwaas([{ name: Math.random(), coordinates: [lat, long] }, ...pwaas])
+    console.log(pwaas)
+  })
   return (
     <Box>
       <Box sx={{ maxHeight: '100vh', overflowY: 'hidden' }}>
-        <MapChart />
+        <MapChart pwaas={pwaas}/>
         <Box
           sx={{
             position: 'absolute',
@@ -46,7 +59,7 @@ function App(props) {
             variant="primary"
             sx={{ color: 'white' }}
             onClick={() => {
-              fetch('/api/send?country=SG')
+              fetch(`/api/send?country=${props.country.country}`)
             }}
           >
             <img
@@ -113,10 +126,9 @@ export function getServerSideProps(context) {
       .replace(' ', '')
       .split(','),
   }))
-  console.log(sortedColours)
   const ip = context.req.headers['x-forwarded-for']
     ? context.req.headers['x-forwarded-for']
-    : '5.53.103.255'
+    : '1.179.127.254'
   console.log(geoip.lookup(ip))
   const country = filter(
     sortedColours,
