@@ -49,37 +49,14 @@ const MapChart = ({ pwaas }) => {
       ))}
       {pwaas.map(({ name, coordinates, markerOffset }) => (
         <Marker key={name} coordinates={coordinates} key={Math.random()}>
-          <circle cx="6" cy="6.5" r="10" fill={theme.colors.success}>
-            <animate
-              attributeName="r"
-              from="0"
-              to="10"
-              dur="6s"
-              fill="freeze"
-            />
-          </circle>
+          <circle cx="6" cy="6.5" r="10" fill={theme.colors.success}></circle>
           <image
             x="0%"
             y="0%"
             xlinkHref="https://cloud-akqarlyq9-hack-club-bot.vercel.app/01p_logo_white.png"
             height="14"
             width="14"
-          >
-            <animate
-              attributeName="height"
-              from="0"
-              to="14"
-              dur="6s"
-              fill="freeze"
-            />
-            <animate
-              attributeName="width"
-              from="0"
-              to="14"
-              dur="6s"
-              fill="freeze"
-            />
-          </image>
+          ></image>
         </Marker>
       ))}
     </ComposableMap>
