@@ -22,8 +22,8 @@ export default async (req, res) => {
   ).then(res => res.json())
 
   await pusher.trigger('pwaa', 'incoming', {
-    long: result[0][0],
-    lat: result[0][1],
+    long: result[0][0].toString(),
+    lat: result[0][1].toString(),
   })
 
   await inst.create({ long: result[0][0], lat: result[0][1] })
