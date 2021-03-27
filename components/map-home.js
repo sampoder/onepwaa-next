@@ -3,8 +3,10 @@ import MapChart from './map'
 import useSound from 'use-sound'
 import { useState } from 'react'
 import { useChannel, useEvent } from '@harelpls/use-pusher'
+import useWindowSize from '../lib/size'
 
 export default function App(props) {
+  const size = useWindowSize()
   props = props.props
   const [sound, setSound] = useState(false)
   const [pop, { popStop }] = useSound(
@@ -26,17 +28,19 @@ export default function App(props) {
     <Box>
       <Grid
         gap={0}
-        columns={[2, '1fr 3fr']}
-        sx={{ alignItems: ' center', px: '48px' }}
+        columns={size.width > 900 ? [2, '1fr 3fr'] : [1, '1fr']}
+        sx={{ alignItems: ' center', px: size.width > 500 ? '48px' : '12px' }}
       >
         <Box
           sx={{
             borderRadius: '8px',
-            width: '100%',
+            width: 'calc(100% - 0px)',
             padding: '24px',
             bg: 'gray.1',
-            minWidth: '335px',
+            minWidth: size.width < 335 ? '0px' : '335px',
             boxShadow: 'rgba(17, 17, 17, 0.2) 0px 4px 12px;',
+            marginTop: size.width > 900 ? '0px' : size.width < 500 ? '-32px' : '-96px',
+            zIndex: '999'
           }}
         >
           <Heading
@@ -51,7 +55,7 @@ export default function App(props) {
           </Heading>
           <Button
             variant="primary"
-            sx={{ color: 'white' }}
+            sx={{ color: 'white', minWidth: size.width < 335 ? '9.5em' : '12.5em', }}
             onClick={() => {
               fetch(`/api/send?country=${props.country.country}`)
             }}
@@ -95,7 +99,9 @@ export default function App(props) {
             OnePwaa's website visits.
           </Box>
         </Box>
-        <MapChart pwaas={pwaas} />
+        <Box sx={size.width > 900 ? {} : { gridColumnStart: 1, gridRowStart: 1 }}>
+          <MapChart pwaas={pwaas} />
+        </Box>
       </Grid>
     </Box>
   )

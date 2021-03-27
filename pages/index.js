@@ -1,11 +1,11 @@
 import { Box, Button, Container, Heading, Grid, Flex, Text } from 'theme-ui'
 import MapHome from '../components/map-home'
-import theme from 'theme-ui-preset-geist'
 import colours from '../lib/colours'
 import names from '../lib/names.json'
-import { brandTheme } from './_app'
+import useWindowSize from '../lib/size'
 
 function App(props) {
+  const size = useWindowSize()
   return (
     <Box>
       <Grid
@@ -15,19 +15,20 @@ function App(props) {
           position: 'absolute',
           top: '0',
           width: '100%',
-          py: '8px',
+          py: '12px',
           background: 'rgba(0, 0, 0, 0.74)',
-          px: '72px',
+          px: size.width > 500 ? '72px' : '12px',
         }}
       >
-        <Heading as="h3">OnePwaa</Heading>
+        <Heading as="h3" sx={{ pt: '1px'}}>OnePwaa</Heading>
+        {size.width > 500 ?
         <Flex sx={{ textAlign: 'right', justifyContent: 'flex-end', h4: { mx: '16px', color: '#999' } }}>
           <Heading as="h4">Knowledge</Heading>
           <Heading as="h4">Strategy</Heading>
           <Heading as="h4">Humans of WSC</Heading>
           <Heading as="h4">Our Story</Heading>
           <Heading as="h4">Contact</Heading>
-        </Flex>
+        </Flex> : <Heading as="h4">Contact</Heading>}
       </Grid>
       <Box sx={{ background: '#000' }}>
         <MapHome props={props} />
@@ -39,7 +40,7 @@ function App(props) {
             rgba(0,0, 0, 1),
             #111
             )`,
-          height: '50px',
+          height: size.width > 1150 ? '50px' : '30px',
         }}
       ></Box>
     </Box>
