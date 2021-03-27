@@ -136,6 +136,11 @@ const App = ({ Component, pageProps }) => {
         </Meta>
         <Component {...pageProps} />
       </PusherProvider>
+      <style>{`
+      body {
+        background-color: #111!important
+      }      
+      `}</style>
     </ThemeProvider>
   )
 }
