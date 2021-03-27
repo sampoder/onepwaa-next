@@ -17,9 +17,16 @@ export default function App(props) {
   )
   const [pwaas, setPwaas] = useState(props.logs)
   const channel = useChannel('pwaa')
+  let soundEffect
+  if (typeof window != 'undefined') {
+    soundEffect = new Audio()
+  }
+
   useEvent(channel, 'incoming', async ({ lat, long }) => {
     if (sound) {
-      pwaa()
+      soundEffect.src =
+        'https://cloud-3hdgzu1je-hack-club-bot.vercel.app/0sweet_sounds_of_an_alpaca.hlj.mp3'
+      soundEffect.play()
     }
     setPwaas([{ name: Math.random(), coordinates: [lat, long] }, ...pwaas])
     console.log(pwaas)
@@ -39,8 +46,9 @@ export default function App(props) {
             bg: 'gray.1',
             minWidth: size.width < 335 ? '0px' : '335px',
             boxShadow: 'rgba(17, 17, 17, 0.2) 0px 4px 12px;',
-            marginTop: size.width > 900 ? '0px' : size.width < 500 ? '-32px' : '-96px',
-            zIndex: '999'
+            marginTop:
+              size.width > 900 ? '0px' : size.width < 500 ? '-32px' : '-96px',
+            zIndex: '999',
           }}
         >
           <Heading
@@ -55,7 +63,10 @@ export default function App(props) {
           </Heading>
           <Button
             variant="primary"
-            sx={{ color: 'white', minWidth: size.width < 335 ? '9.5em' : '12.5em', }}
+            sx={{
+              color: 'white',
+              minWidth: size.width < 335 ? '9.5em' : '12.5em',
+            }}
             onClick={() => {
               fetch(`/api/send?country=${props.country.country}`)
             }}
@@ -74,6 +85,8 @@ export default function App(props) {
             variant="primary"
             onClick={() => {
               setSound(!sound)
+              soundEffect.src = ''
+              soundEffect.play()
               if (!sound) {
                 pop()
               }
@@ -81,7 +94,7 @@ export default function App(props) {
             sx={{
               minWidth: '10px',
               marginLeft: '8px',
-              transition: 'transform 0.35s ease-in-out'
+              transition: 'transform 0.35s ease-in-out',
             }}
           >
             <Text sx={{ transform: 'rotate(30deg)' }}>
@@ -93,7 +106,9 @@ export default function App(props) {
             OnePwaa's website visits.
           </Box>
         </Box>
-        <Box sx={size.width > 900 ? {} : { gridColumnStart: 1, gridRowStart: 1 }}>
+        <Box
+          sx={size.width > 900 ? {} : { gridColumnStart: 1, gridRowStart: 1 }}
+        >
           <MapChart pwaas={pwaas} />
         </Box>
       </Grid>

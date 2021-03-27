@@ -5,6 +5,7 @@ import names from '../lib/names.json'
 import useWindowSize from '../lib/size'
 
 function App(props) {
+  
   const size = useWindowSize()
   return (
     <Box>
@@ -25,8 +26,8 @@ function App(props) {
         <Flex sx={{ textAlign: 'right', justifyContent: 'flex-end', h4: { mx: '16px', color: '#999' } }}>
           <Heading as="h4">Knowledge</Heading>
           <Heading as="h4">Strategy</Heading>
-          <Heading as="h4">Humans of WSC</Heading>
-          <Heading as="h4">Our Story</Heading>
+          <Heading as="h4">{size.width > 900 ? 'Humans of WSC' : 'HoWSC'}</Heading>
+          <Heading as="h4">{size.width > 900 ? 'Our Story' : 'About'}</Heading>
           <Heading as="h4">Contact</Heading>
         </Flex> : <Heading as="h4">Contact</Heading>}
       </Grid>
