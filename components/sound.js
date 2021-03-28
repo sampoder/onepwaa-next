@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Heading, Text } from 'theme-ui'
+import { Box, Button, Grid, Heading, Text, useColorMode } from 'theme-ui'
 import MapChart from './map'
 import useSound from 'use-sound'
 import { useState } from 'react'
@@ -7,6 +7,7 @@ import useWindowSize from '../lib/size'
 
 export default function SoundPanel(props) {
   const size = useWindowSize()
+  const [mode, setMode] = useColorMode()
   props = props.props
   const [sound, setSound] = useState(false)
   const [pop, { popStop }] = useSound(
@@ -58,7 +59,13 @@ export default function SoundPanel(props) {
         variant="primary"
         sx={{
           color: 'white',
+          background: '#000',
           minWidth: size.width < 335 ? '9.5em' : '12.5em',
+          ':hover,:focus': mode != "dark" ?{
+            color: 'white',
+            bg: '#111',
+            borderColor: '#000',
+          } : {},
         }}
         onClick={() => {
           fetch(`/api/send?country=${props.country.country}`)
@@ -70,7 +77,7 @@ export default function SoundPanel(props) {
           style={{
             height: '17px',
             verticalAlign: 'text-bottom',
-            marginRight: '4px',
+            marginRight: '4px'
           }}
         />{' '}
         Send a Pwaa!
@@ -89,6 +96,12 @@ export default function SoundPanel(props) {
           minWidth: '10px',
           marginLeft: '8px',
           transition: 'transform 0.35s ease-in-out',
+          background: '#000',
+          ':hover,:focus': mode != "dark" ? {
+            color: 'white',
+            bg: '#111',
+            borderColor: '#000',
+          } : {},
         }}
       >
         <Text sx={{ transform: 'rotate(30deg)' }}>{sound ? '🔊' : '🔇'}</Text>

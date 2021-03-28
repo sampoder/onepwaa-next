@@ -1,11 +1,21 @@
-import { Box, Button, Container, Heading, Grid, Flex, Text } from 'theme-ui'
+import {
+  Box,
+  Button,
+  Container,
+  Heading,
+  Grid,
+  Flex,
+  Text,
+  useColorMode,
+} from 'theme-ui'
 import MapHome from '../components/map-home'
 import colours from '../lib/colours'
 import names from '../lib/names.json'
 import useWindowSize from '../lib/size'
+import ColorSwitcher from '../components/color-switcher'
 
 function App(props) {
-  
+  const [mode, setMode] = useColorMode()
   const size = useWindowSize()
   return (
     <Box>
@@ -17,33 +27,60 @@ function App(props) {
           top: '0',
           width: '100%',
           py: '12px',
-          background: 'rgba(0, 0, 0, 0.74)',
+          background: mode == 'dark' ? 'rgba(0, 0, 0, 0.74)' : '#000',
           px: size.width > 500 ? '72px' : '12px',
+          h4: {
+            mx: '16px',
+            pt: '4px',
+            color: mode === 'dark' ? '#999' : '#fff',
+          },
         }}
       >
-        <Heading as="h3" sx={{ pt: '1px'}}>OnePwaa</Heading>
-        {size.width > 500 ?
-        <Flex sx={{ textAlign: 'right', justifyContent: 'flex-end', h4: { mx: '16px', color: '#999' } }}>
-          <Heading as="h4">Knowledge</Heading>
-          <Heading as="h4">Strategy</Heading>
-          <Heading as="h4">{size.width > 900 ? 'Humans of WSC' : 'HoWSC'}</Heading>
-          <Heading as="h4">{size.width > 900 ? 'Our Story' : 'About'}</Heading>
+        <Heading as="h3" sx={{ pt: '3px', color: '#fff' }}>
+          OnePwaa
+        </Heading>
+        {size.width > 500 ? (
+          <Flex
+            sx={{
+              textAlign: 'right',
+              justifyContent: 'flex-end',
+            }}
+          >
+            <Heading as="h4">Knowledge</Heading>
+            <Heading as="h4">Strategy</Heading>
+            <Heading as="h4">
+              {size.width > 900 ? 'Humans of WSC' : 'HoWSC'}
+            </Heading>
+            <Heading as="h4">
+              {size.width > 900 ? 'Our Story' : 'About'}
+            </Heading>
+            <Heading as="h4">Contact</Heading>
+            <ColorSwitcher />
+          </Flex>
+        ) : (
+          <>
           <Heading as="h4">Contact</Heading>
-        </Flex> : <Heading as="h4">Contact</Heading>}
+          <ColorSwitcher />
+          </>
+        )}
       </Grid>
-      <Box sx={{ background: '#000' }}>
+      <Box sx={{ bg: 'var(--theme-ui-colors-gray-0)' }}>
         <MapHome props={props} />
       </Box>
-      <Box
-        sx={{
-          backgroundImage: `linear-gradient(
+      {mode === 'dark' ? (
+        <Box
+          sx={{
+            backgroundImage: `linear-gradient(
             180deg,
             rgba(0,0, 0, 1),
             #111
             )`,
-          height: size.width > 1150 ? '50px' : '30px',
-        }}
-      ></Box>
+            height: size.width > 1150 ? '50px' : '30px',
+          }}
+        ></Box>
+      ) : (
+        ''
+      )}
     </Box>
   )
 }

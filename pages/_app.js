@@ -102,12 +102,14 @@ theme.util.gxText = (from, to) => ({
 
 const brandTheme = merge(theme, {
   breakpoints: [32, 48, 64, 96, 128].map(w => `${w}em`),
+  initialColorModeName: 'light',
+  useColorSchemeMediaQuery: true,
   colors: {
-    text: defaultColors.white,
-    background: darkColors.gray[1],
-    secondary: darkColors.gray[5],
-    selection: defaultColors.purple,
-    ...darkColors,
+    modes: {
+      dark: {
+        background: '#111',
+      },
+    },
   },
   fonts: {
     body:
@@ -132,11 +134,6 @@ const App = ({ Component, pageProps }) => {
         </Meta>
         <Component {...pageProps} />
       </PusherProvider>
-      <style>{`
-      body {
-        background-color: #111!important
-      }      
-      `}</style>
     </ThemeProvider>
   )
 }
