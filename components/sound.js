@@ -66,6 +66,7 @@ export default function SoundPanel(props) {
       >
         <img
           src="https://cloud-akqarlyq9-hack-club-bot.vercel.app/01p_logo_white.png"
+          alt="OnePwaa Logo"
           style={{
             height: '17px',
             verticalAlign: 'text-bottom',
