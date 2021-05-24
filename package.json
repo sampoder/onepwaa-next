@@ -17,16 +17,16 @@
     "airtable-plus": "^1.0.4",
     "country-iso-2-to-3": "^1.1.0",
     "country-to-iso": "^1.1.1",
-    "geoip-country": "^4.0.65",
+    "geoip-country": "^4.0.69",
     "lodash": "^4.17.21",
-    "next": "^10.1.3",
+    "next": "^10.2.2",
     "pusher": "^5.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-simple-maps": "^2.3.0",
     "theme-ui": "^0.8.4",
     "theme-ui-preset-geist": "^0.0.2",
-    "use-sound": "^2.0.1",
+    "use-sound": "^3.0.1",
     "yarn": "^1.22.10"
   }
 }
