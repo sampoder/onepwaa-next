@@ -1314,10 +1314,10 @@ country-iso-2-to-3@^1.1.0:
   resolved "https://registry.yarnpkg.com/country-iso-2-to-3/-/country-iso-2-to-3-1.1.0.tgz#219379033763abf86e96845317ae9be145aae850"
   integrity sha512-+xaB6XPuuLuSQEjejWXjff7s5AMyisPk3jBmIqM7aymup79mEcinNkUiIpe4VedSPWCT+/bMW/EDJvRaiDaWKw==
 
-country-to-iso@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/country-to-iso/-/country-to-iso-1.1.0.tgz#ba9c2306ffa048ffa789acdbebf592549c89d7dd"
-  integrity sha512-IVe7ti1QW6uenCki9ZAHS1UbTqIr+7/JCemGqqdmaR0GdY2iVOEdStUyxHhwG8RgTwFZm1q0iPd/LFLcL0SFIA==
+country-to-iso@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/country-to-iso/-/country-to-iso-1.1.1.tgz#b168d9001149c14b97a57b0a8dac741a20a4f157"
+  integrity sha512-j8VnsOUa/JOB96MixfRgGglgexo+nF7i7aifmaCgZT12pG0lXNQqRUepMS8UNXhj9P3pe1vHnk06/nnO6Q7hoA==
 
 create-ecdh@^4.0.0:
   version "4.0.3"
