@@ -26,7 +26,7 @@ function App(props) {
           top: '0',
           width: '100%',
           py: '12px',
-          background: mode == 'dark' ? 'rgba(0, 0, 0, 0.74)' : '#000',
+          background: 'rgba(0, 0, 0, 0.74)',
           px: size.width > 500 ? '72px' : '12px',
           h4: {
             mx: '16px',
