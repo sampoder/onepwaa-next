@@ -15,7 +15,6 @@ import useWindowSize from '../lib/size'
 import ColorSwitcher from '../components/color-switcher'
 
 function App(props) {
-  const [mode, setMode] = useColorMode()
   const size = useWindowSize()
   return (
     <Box>
@@ -60,7 +59,6 @@ function App(props) {
         ) : (
           <>
           <Heading as="h4">Contact</Heading>
-          <ColorSwitcher />
           </>
         )}
       </Grid>
