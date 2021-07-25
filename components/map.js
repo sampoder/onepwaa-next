@@ -40,8 +40,8 @@ const MapChart = ({ pwaas }) => {
             <Geography
               key={geo.rsmKey}
               geography={geo}
-              fill={mode === 'dark' ? theme.colors.modes.dark.gray[1] : theme.colors.gray[2]}
-              stroke={mode === 'dark' ? theme.colors.modes.dark.gray[2] : theme.colors.gray[1]}
+              fill={theme.colors.modes.dark.gray[1]}
+              stroke={theme.colors.modes.dark.gray[2]}
               strokeWidth={0.1}
             />
           ))
