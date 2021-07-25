@@ -102,14 +102,12 @@ theme.util.gxText = (from, to) => ({
 
 const brandTheme = merge(theme, {
   breakpoints: [32, 48, 64, 96, 128].map(w => `${w}em`),
-  initialColorModeName: 'light',
-  useColorSchemeMediaQuery: true,
   colors: {
-    modes: {
-      dark: {
-        background: '#111',
-      },
-    },
+    text: defaultColors.white,
+    background: defaultColors.black,
+    secondary: darkColors.gray[5],
+    selection: defaultColors.purple,
+    ...darkColors,
   },
   fonts: {
     body:
