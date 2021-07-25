@@ -54,7 +54,6 @@ function App(props) {
               {size.width > 900 ? 'Our Story' : 'About'}
             </Heading>
             <Heading as="h4">Contact</Heading>
-            <ColorSwitcher />
           </Flex>
         ) : (
           <>
