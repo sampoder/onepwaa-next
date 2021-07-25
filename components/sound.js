@@ -37,7 +37,7 @@ export default function SoundPanel(props) {
         borderRadius: '8px',
         width: 'calc(100% - 0px)',
         padding: '24px',
-        bg: 'gray.1',
+        bg: 'gray.0',
         minWidth: size.width < 335 ? '0px' : '335px',
         boxShadow: 'rgba(17, 17, 17, 0.2) 0px 4px 12px;',
         marginTop:

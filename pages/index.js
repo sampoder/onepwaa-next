@@ -61,21 +61,9 @@ function App(props) {
           </>
         )}
       </Grid>
-      <Box sx={{ bg: 'var(--theme-ui-colors-gray-0)' }}>
+      <Box sx={{ bg: '#111' }}>
         <MapHome props={props} />
       </Box>
-      
-        <Box
-          sx={{
-            backgroundImage: `linear-gradient(
-            180deg,
-            rgba(0,0, 0, 1),
-            #111
-            )`,
-            height: size.width > 1150 ? '50px' : '30px',
-          }}
-        ></Box>
-    
     </Box>
   )
 }
