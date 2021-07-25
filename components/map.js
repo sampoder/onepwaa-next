@@ -22,7 +22,6 @@ const geoUrl =
 
 const MapChart = ({ pwaas }) => {
   const size = useWindowSize()
-  const [mode, setMode] = useColorMode()
   return (
     <ComposableMap
       projection="geoMercator"
