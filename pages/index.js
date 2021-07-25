@@ -31,7 +31,7 @@ function App(props) {
           h4: {
             mx: '16px',
             pt: '4px',
-            color: mode === 'dark' ? '#999' : '#fff',
+            color: '#999',
           },
         }}
       >
@@ -65,7 +65,7 @@ function App(props) {
       <Box sx={{ bg: 'var(--theme-ui-colors-gray-0)' }}>
         <MapHome props={props} />
       </Box>
-      {mode === 'dark' ? (
+      
         <Box
           sx={{
             backgroundImage: `linear-gradient(
@@ -76,9 +76,7 @@ function App(props) {
             height: size.width > 1150 ? '50px' : '30px',
           }}
         ></Box>
-      ) : (
-        ''
-      )}
+    
     </Box>
   )
 }
