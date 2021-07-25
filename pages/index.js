@@ -64,6 +64,17 @@ function App(props) {
       <Box sx={{ bg: '#111' }}>
         <MapHome props={props} />
       </Box>
+      <Box
+          sx={{
+            backgroundImage: `linear-gradient(
+            180deg,
+            #111,
+            #111
+            )`,
+            height: size.width > 1150 ? '50px' : '30px',
+            display: ['block',null,'none']
+          }}
+        ></Box>
     </Box>
   )
 }
