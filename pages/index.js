@@ -81,36 +81,7 @@ function App(props) {
   )
 }
 
-export async function getServerSideProps(context) {
-  const geoip = require('geoip-country')
-  const { orderBy, filter } = require('lodash')
-  const sortedColours = colours.map(colour => ({
-    country:
-      names[
-        colour['Country']
-          .replace(' ', '')
-          .normalize('NFD')
-          .replace('the', '')
-          .replace(/[\u0300-\u036f]/g, '')
-          .replace(/\W/g, '')
-          .toLocaleUpperCase()
-      ],
-    full: colour['Country'],
-    colours: colour['Primary colours']
-      .replace('and', ',')
-      .replace(' ', '')
-      .split(','),
-  }))
-  const ip = context.req.headers['x-forwarded-for']
-    ? context.req.headers['x-forwarded-for']
-    : '1.179.127.254'
-  console.log(geoip.lookup(ip))
-  const country = filter(
-    sortedColours,
-    colour => colour.country === geoip.lookup(ip).country,
-  )
-  console.log(country)
-
+export async function getStaticProps() {
   const AirtablePlus = require('airtable-plus')
 
   const inst = new AirtablePlus({
@@ -127,7 +98,8 @@ export async function getServerSideProps(context) {
   console.log(logs)
 
   return {
-    props: { country: country[0], logs },
+    props: {  logs },
+    revalidate: 1
   }
 }
 
