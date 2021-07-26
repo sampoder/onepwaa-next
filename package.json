@@ -27,6 +27,6 @@
     "theme-ui": "^0.10.0",
     "theme-ui-preset-geist": "^0.0.2",
     "use-sound": "^3.0.1",
-    "yarn": "^1.22.10"
+    "yarn": "^1.22.11"
   }
 }
