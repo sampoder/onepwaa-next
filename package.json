@@ -17,7 +17,7 @@
     "airtable-plus": "^1.0.4",
     "country-iso-2-to-3": "^1.1.0",
     "country-to-iso": "^1.1.1",
-    "geoip-country": "^4.0.69",
+    "geoip-country": "^4.0.79",
     "lodash": "^4.17.21",
     "next": "^10.2.2",
     "pusher": "^5.0.0",
