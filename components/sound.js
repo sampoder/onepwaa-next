@@ -6,7 +6,6 @@ import { useChannel, useEvent } from '@harelpls/use-pusher'
 import useWindowSize from '../lib/size'
 
 export default function SoundPanel(props) {
-  const size = useWindowSize()
   const [mode, setMode] = useColorMode()
   props = props.props
   const [sound, setSound] = useState(false)
@@ -38,10 +37,10 @@ export default function SoundPanel(props) {
         width: 'calc(100% - 0px)',
         padding: '24px',
         bg: 'gray.0',
-        minWidth: size.width < 335 ? '0px' : '335px',
+        minWidth: ['100%','335px'],
         boxShadow: 'rgba(17, 17, 17, 0.2) 0px 4px 12px;',
         marginTop:
-          size.width > 900 ? '0px' : size.width < 500 ? '-32px' : '-96px',
+          ['-32px','-96px','0px'],
         zIndex: '999',
       }}
     >
@@ -60,7 +59,7 @@ export default function SoundPanel(props) {
         sx={{
           color: 'white',
           background: '#000',
-          minWidth: size.width < 335 ? '9.5em' : '12.5em',
+          minWidth: ['9.5em', '12.5em'],
           ':hover,:focus': mode != "dark" ?{
             color: 'white',
             bg: '#111',

@@ -7,7 +7,6 @@ import useWindowSize from '../lib/size'
 import SoundPanel from './sound'
 
 export default function App(props) {
-  const size = useWindowSize()
   props = props.props
   const [pwaas, setPwaas] = useState(props.logs)
   const channel = useChannel('pwaa')
@@ -19,12 +18,12 @@ export default function App(props) {
     <Box>
       <Grid
         gap={0}
-        columns={size.width > 900 ? [2, '1fr 3fr'] : [1, '1fr']}
-        sx={{ alignItems: ' center', px: size.width > 500 ? '48px' : '12px' }}
+        columns={ [1, '1fr 3fr']}
+        sx={{ alignItems: ' center', px: ['12px', '48px'] }}
       >
         <SoundPanel props={props}/>
         <Box
-          sx={size.width > 900 ? {} : { gridColumnStart: 1, gridRowStart: 1 }}
+          sx={{ gridColumnStart: [1, 2], gridRowStart: [1, 1] }}
         >
           <MapChart pwaas={pwaas} />
         </Box>
